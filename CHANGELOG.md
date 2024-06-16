@@ -1,4 +1,8 @@
 # Changelog
+## [1.2f] - 2024-06-16
+### Added
+- Mengubah tampilan
+- Menyelesaikan bug
 
 ## [1.2] - 2024-06-16
 ### Added
