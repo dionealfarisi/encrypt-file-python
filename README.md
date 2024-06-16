@@ -1,5 +1,7 @@
 # Program Enkripsi File
 
+![Image](https://i.ibb.co/xDnjCKt/OIG1-s.jpg)
+
 Program ini digunakan untuk mengenkripsi teks dari file dan menghasilkan file Python untuk mendekripsi teks tersebut.
 
 ## Fitur
