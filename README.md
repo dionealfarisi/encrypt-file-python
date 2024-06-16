@@ -78,7 +78,7 @@ Fungsi ini mengatur alur utama program:
 
 ## Lisensi
 
-Proyek ini dilisensikan di bawah lisensi MIT. Lihat file `LICENSE` untuk informasi lebih lanjut.
+Proyek ini dilisensikan di bawah lisensi MIT. Lihat file [LICENSE](./LICENSE)untuk informasi lebih lanjut.
 
 ## Changelog
 
