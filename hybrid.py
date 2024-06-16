@@ -46,7 +46,7 @@ def encrypt_symmetric_key(sym_key, public_key):
     enc_sym_key = cipher_rsa.encrypt(sym_key)
     return base64.b64encode(enc_sym_key).decode('utf-8')
 
-def create_decrypt_file(file_name, iv, ct, enc_sym_key, private_key):
+def create_decrypt_file(file_name, iv, ct, enc_sym_key):
     file_name_without_extension = os.path.splitext(file_name)[0]
 
     decrypt_code = f"""
@@ -97,12 +97,19 @@ def decrypt_file(iv, ct, enc_sym_key, private_key):
 iv = '{iv}'
 ct = '{ct}'
 enc_sym_key = '{enc_sym_key}'
-private_key = \"\"\"{private_key}\"\"\"
 
 clear_screen()
 print("\\n\\033[1;34m====== Dekripsi Program ======\\n\\033[1;35mby Dione\\n\\033[1;36mVersi: 1.2f\\n")
+time.sleep(1)
 
 try:
+    private_key_file = "private_key.pem"
+    if os.path.exists(private_key_file):
+        with open(private_key_file, 'rb') as f:
+            private_key = f.read()
+    else:
+        private_key = input("\\033[1;32mMasukkan kunci privat (pem format): \\033[0m").encode()
+
     decrypted_text = decrypt_file(iv, ct, enc_sym_key, private_key)
     clear_screen()
     print("\\033[1;33mDekripsi berhasil...\\033[0m")
@@ -134,14 +141,18 @@ def main():
     sym_key = get_random_bytes(16)
     private_key, public_key = generate_rsa_keys()
 
-    print("\033[1;33m> Simpan kunci privat di tempat yang aman!!\033[0m")
-    print(f"\033[1;33mPrivate Key:\n{private_key.decode()}\033[0m")
+    # Simpan private key ke file
+    private_key_file = "private_key.pem"
+    with open(private_key_file, 'wb') as f:
+        f.write(private_key)
+    
+    print("\033[1;33m> Simpan file private_key.pem di tempat yang aman!!\033[0m")
 
     iv, ciphertext = encrypt_file(text, sym_key)
     enc_sym_key = encrypt_symmetric_key(sym_key, public_key)
     print("\033[1;33mEncrypted:\n", ciphertext, "\033[0m")
     
-    create_decrypt_file(file_path, iv, ciphertext, enc_sym_key, private_key.decode())
+    create_decrypt_file(file_path, iv, ciphertext, enc_sym_key)
     print("\033[1;32mFile decrypt telah dibuat.\033[0m")
 
 if __name__ == "__main__":
