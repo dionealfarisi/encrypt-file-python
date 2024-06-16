@@ -20,7 +20,7 @@ Program ini digunakan untuk mengenkripsi teks dari file dan menghasilkan file Py
 1. Clone repository ini:
     ```sh
     git clone https://github.com/DioneAl-Farisi/encrypt-file-python.git
-    cd repository-name
+    cd encrypt-file-python
     ```
 
 2. Jalankan script utama:
