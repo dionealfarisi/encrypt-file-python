@@ -95,7 +95,7 @@ iv = '{iv}'
 ct = '{ct}'
 
 clear_screen()
-print("\\n\x1b[1;34m====== Password ======\\n\x1b[1;35mby Dione\\n\x1b[1;36mVersi: 1.2\\n")
+print("\\n\x1b[1;34m====== Password ======\\n\x1b[1;35mby Dione\\n\x1b[1;36mVersi: 1.2f\\n")
 key_input = input("\x1b[1;32mPassword: \x1b[0m").strip()
 if len(key_input) != 16:
     print("\x1b[1;31mPassword harus 16 karakter.\x1b[0m")
@@ -158,7 +158,7 @@ iv = '{iv}'
 ct = '{ct}'
 
 clear_screen()
-print("\\n\x1b[1;34m====== Password ======\\n\x1b[1;35mby Dione\\n\x1b[1;36mVersi: 1.2\\n")
+print("\\n\x1b[1;34m====== Password ======\\n\x1b[1;35mby Dione\\n\x1b[1;36mVersi: 1.2f\\n")
 key_hex = input("\x1b[1;32mPassword): \x1b[0m").strip()
 if len(key_hex) != 32:
     print("\x1b[1;31mKunci harus 32 karakter (16 byte dalam format hex).\x1b[0m")
@@ -186,7 +186,7 @@ except Exception as e:
 
 def main():
     clear_screen()
-    print("\t\x1b[1;34m====== Program Enkripsi ======\n\x1b[1;35mby Dione\n\x1b[1;36mVersi: 1.2\n")
+    print("\t\x1b[1;34m====== Program Enkripsi ======\n\x1b[1;35mby Dione\n\x1b[1;36mVersi: 1.2f\n")
     file_path = input("\x1b[1;32mNama File: \x1b[0m")
     
     with open(file_path, 'r') as file:
