@@ -4,6 +4,10 @@ import sys
 import time
 import importlib
 import base64
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
+from Crypto.Random import get_random_bytes
+import py_compile
 
 def install_and_import(package):
     try:
@@ -18,11 +22,6 @@ def install_and_import(package):
 
 if not install_and_import('pycryptodome'):
     sys.exit("Gagal menginstal modul 'pycryptodome'. Keluar...")
-
-from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad, unpad
-from Crypto.Random import get_random_bytes
-import py_compile
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -96,21 +95,21 @@ iv = '{iv}'
 ct = '{ct}'
 
 clear_screen()
-print("\\n===== Dibutuhkan Password =====\\n  by Dione\\n  Versi: 1.2\\n")
-key_input = input("Password: ").strip()
+print("\\n\x1b[1;34m====== Password ======\\n\x1b[1;35mby Dione\\n\x1b[1;36mVersi: 1.2\\n")
+key_input = input("\x1b[1;32mPassword: \x1b[0m").strip()
 if len(key_input) != 16:
-    print("Password harus 16 karakter.")
+    print("\x1b[1;31mPassword harus 16 karakter.\x1b[0m")
     sys.exit(1)
 try:
     key = key_input.encode()
     decrypted_text = decrypt(iv, ct, key)
     clear_screen()
-    print("Dekripsi berhasil...")
+    print("\x1b[1;33mDekripsi berhasil...\x1b[0m")
     time.sleep(3)
     clear_screen()
     exec(decrypted_text)
 except Exception as e:
-    print("Error :", e)
+    print("\x1b[1;31mError :", e, "\x1b[0m")
 """
     else:
         decrypt_code = f"""
@@ -159,47 +158,50 @@ iv = '{iv}'
 ct = '{ct}'
 
 clear_screen()
-print("\\n===== Dibutuhkan Password =====\\n  by Dione\\n  Versi: 1.2\\n")
-key_hex = input("Password): ").strip()
+print("\\n\x1b[1;34m====== Password ======\\n\x1b[1;35mby Dione\\n\x1b[1;36mVersi: 1.2\\n")
+key_hex = input("\x1b[1;32mPassword): \x1b[0m").strip()
 if len(key_hex) != 32:
-    print("Kunci harus 32 karakter (16 byte dalam format hex).")
+    print("\x1b[1;31mKunci harus 32 karakter (16 byte dalam format hex).\x1b[0m")
     sys.exit(1)
 try:
     key = bytes.fromhex(key_hex)
     decrypted_text = decrypt(iv, ct, key)
     clear_screen()
-    print("Dekripsi berhasil...:")
+    print("\x1b[1;33mDekripsi berhasil...:\x1b[0m")
     time.sleep(3)
     exec(decrypted_text)
 except Exception as e:
-    print("Error:", e)
+    print("\x1b[1;31mError:", e, "\x1b[0m")
 """
 
     decrypt_file_name = file_name_without_extension + ".decrypt.py"
     with open(decrypt_file_name, "w") as f:
         f.write(decrypt_code)
+
     py_compile.compile(decrypt_file_name, cfile=decrypt_file_name + "c")
+
     if os.path.exists(decrypt_file_name + "c"):
         os.remove(decrypt_file_name)
         os.rename(decrypt_file_name + "c", decrypt_file_name)
 
 def main():
     clear_screen()
-    print("\t===== Program Enkripsi =====\n  by Dione\n  Versi: 1.2\n")
-    file_path = input("Nama File: ")
+    print("\t\x1b[1;34m====== Program Enkripsi ======\n\x1b[1;35mby Dione\n\x1b[1;36mVersi: 1.2\n")
+    file_path = input("\x1b[1;32mNama File: \x1b[0m")
+    
     with open(file_path, 'r') as file:
         text = file.read()
     
     key, key_choice = get_password()
-    print("> Simpan Key di Tempat yang aman!!")
+    print("\x1b[1;33m> Simpan Key di Tempat yang aman!!\x1b[0m")
     key_hex = key.hex()
-    print(f"Key (hex): {key_hex}")
+    print(f"\x1b[1;33mKey (hex): {key_hex}\x1b[0m")
     
     iv, ciphertext = encrypt(text, key)
-    print("Encrypted:", ciphertext)
+    print("\x1b[1;33mEncrypted:", ciphertext, "\x1b[0m")
     
     create_decrypt_file(file_path, iv, ciphertext, key_hex, key_choice)
-    print("File decrypt.py telah dibuat.")
+    print("\x1b[1;32mFile decrypt telah dibuat.\x1b[0m")
 
 if __name__ == "__main__":
     main()
