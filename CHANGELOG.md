@@ -1,4 +1,9 @@
 # Changelog
+## [1.2f] - 2024-07-12
+### Added
+- hybrid.py , ini adalah program encrypt dengan versi hybrid
+- key di simpan pada file
+
 ## [1.2f] - 2024-06-16
 ### Added
 - Mengubah tampilan
